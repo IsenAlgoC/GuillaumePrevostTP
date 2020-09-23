@@ -1,2 +1,6 @@
 ﻿  boucle.c
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\TP2\boucle.c(27,11): warning C4477: 'scanf_s' : la chaîne de format '%hu' nécessite un argument de type 'unsigned short *', mais l'argument variadique 1 est de type 'int *'
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\TP2\boucle.c(27,11): message : utilisez '%u' dans la chaîne de format
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\TP2\boucle.c(27,11): message : utilisez '%Iu' dans la chaîne de format
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\TP2\boucle.c(27,11): message : utilisez '%I32u' dans la chaîne de format
   TP2.vcxproj -> C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\Debug\Exo1.exe
