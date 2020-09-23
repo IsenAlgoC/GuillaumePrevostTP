@@ -9,6 +9,7 @@ int depassement(int number) {
 		i += 1;
 		sum += i;
 	}	// i = 361 : dernière valeur possible avant dépassement
+	printf("%d", i);
 	if (number > i) { 
 		return 1; 
 	} else {

@@ -1,0 +1,7 @@
+﻿  main.c
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\Exo3\main.c(9,11): warning C4477: 'scanf_s' : la chaîne de format '%hu' nécessite un argument de type 'unsigned short *', mais l'argument variadique 1 est de type 'int *'
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\Exo3\main.c(9,11): message : utilisez '%u' dans la chaîne de format
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\Exo3\main.c(9,11): message : utilisez '%Iu' dans la chaîne de format
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\Exo3\main.c(9,11): message : utilisez '%I32u' dans la chaîne de format
+C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\Exo3\main.c(42): warning C4717: 'main' : récurrent sur tous les chemins d'accès de contrôle, la fonction entraînera un dépassement de capacité de la pile d'exécution
+  Exo3.vcxproj -> C:\Users\prevo\source\repos\IsenAlgoC\GuillaumePrevostTP2\TP2\Debug\Exo3.exe
