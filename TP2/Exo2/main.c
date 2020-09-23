@@ -21,7 +21,7 @@ int main() {
 	float b = 0;
 	float c = 0;
 
-	while (a > 150 || b > 150 || c > 150) {
+	while (a > 150 || b > 150 || c > 150 || a <= 0 || b <= 0 || c <= 0) {
 		printf("\nEntrer a : ");
 		scanf_s("%f", &a);
 		printf("Entrer b : ");
@@ -35,6 +35,11 @@ int main() {
 		printf("\nNON ");
 	}
 	printf("VALIDE");
+
+	int t = 0;
+	printf("\nTester un autre bagage ? (1 : oui, 0 : non)  ");
+	scanf_s("%hu", &t);
+	if (t) { main(); }
 }
 
 
