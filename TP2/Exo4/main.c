@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 
 
 int main() {
-	srand(10);
+	srand(time(NULL));
 	int n = rand();
 	int a = -1;
 	int i = 0;
