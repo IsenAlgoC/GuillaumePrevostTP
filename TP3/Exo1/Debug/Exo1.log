@@ -1,0 +1,3 @@
+﻿  main.c
+MSVCRTD.lib(exe_main.obj) : error LNK2019: symbole externe non résolu _main référencé dans la fonction "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Debug\Exo1.exe : fatal error LNK1120: 1 externes non résolus
