@@ -1,0 +1,5 @@
+﻿  main.c
+C:\Users\prevo\source\repos\TP3\Exo3\main.c(99,22): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\prevo\source\repos\TP3\Exo3\main.c(101,26): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\prevo\source\repos\TP3\Exo3\main.c(10,1): warning C4047: 'initialisation' : les niveaux d'indirection de 'char' et de 'char [2]' sont différents
+  Exo3.vcxproj -> C:\Users\prevo\source\repos\TP3\Debug\Exo3.exe
