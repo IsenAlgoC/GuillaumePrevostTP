@@ -16,7 +16,7 @@ int main() {
 	for (int j = 0; j < 30; j++) {
 		tab[j] = -2;
 	}
-	/*
+	
 
 	while (i < 30 && a != 'O') {
 		i++;
@@ -33,15 +33,7 @@ int main() {
 			tab[i - 1] = n;
 			val++;
 		}
-	}*/
-	
-	tab[0] = 2;
-	tab[1] = 1;
-	tab[2] = 4;
-	tab[3] = 3;
-	val = 4;
-	i = 4;
-	abs = 0;
+	}
 
 	// CALCUL DES EXTREMUMS
 	float min = 20;

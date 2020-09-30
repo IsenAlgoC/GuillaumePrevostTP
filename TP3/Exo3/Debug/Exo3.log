@@ -1,5 +1,9 @@
 ﻿  main.c
-C:\Users\prevo\source\repos\TP3\Exo3\main.c(99,22): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-C:\Users\prevo\source\repos\TP3\Exo3\main.c(101,26): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
-C:\Users\prevo\source\repos\TP3\Exo3\main.c(10,1): warning C4047: 'initialisation' : les niveaux d'indirection de 'char' et de 'char [2]' sont différents
-  Exo3.vcxproj -> C:\Users\prevo\source\repos\TP3\Debug\Exo3.exe
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo3\main.c(27,12): warning C4473: 'scanf_s' : nombre insuffisant d'arguments passés pour la chaîne de format
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo3\main.c(27,12): message : les espaces réservés et leurs paramètres attendent des arguments 2 variadiques, mais des arguments 1 ont été fournis
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo3\main.c(27,12): message : l'argument variadique manquant 2 est demandé par la chaîne de format '%c'
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo3\main.c(27,12): message : cet argument est utilisé comme taille de mémoire tampon
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo3\main.c(91,22): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo3\main.c(93,26): warning C4244: '=' : conversion de 'float' en 'int', perte possible de données
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo3\main.c(10,1): warning C4047: 'initialisation' : les niveaux d'indirection de 'char' et de 'char [2]' sont différents
+  Exo3.vcxproj -> C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Debug\Exo3.exe
