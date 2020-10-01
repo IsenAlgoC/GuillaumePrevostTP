@@ -98,10 +98,10 @@ void exo2() {
 
 
 }
-
+ 
 
 
 int main() {
-	//exo1();
+	exo1();
 	exo2();
 }
