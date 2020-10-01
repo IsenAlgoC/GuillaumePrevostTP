@@ -1,0 +1,4 @@
+﻿  main.c
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo4\main.c(12,11): warning C4076: 'unsigned' : ne peut pas être utilisé avec le type 'float'
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Exo4\main.c(19,20): warning C4244: '+=' : conversion de 'double' en 'unsigned int', perte possible de données
+  Exo4.vcxproj -> C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP3\Debug\Exo4.exe
