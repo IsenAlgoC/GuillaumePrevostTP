@@ -1,0 +1,3 @@
+﻿  main.c
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP4\Exo3\main.c(15,15): warning C4013: '_getch' non défini(e) ; extern retournant int pris par défaut
+  Exo3.vcxproj -> C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP4\Debug\Exo3.exe
