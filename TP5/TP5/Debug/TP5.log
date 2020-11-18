@@ -1,0 +1,5 @@
+﻿  main.c
+C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP5\TP5\main.c(7,6): warning C4101: 'myTab' : variable locale non référencée
+  tab.c
+  Génération de code en cours...
+  TP5.vcxproj -> C:\Users\prevo\source\repos\GuillaumePrevostTP2\TP5\Debug\Exo1.exe
