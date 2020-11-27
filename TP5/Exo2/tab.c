@@ -48,9 +48,14 @@ int setElement(TABLEAU* tab, int pos, int element) {
 			return 0;
 		}
 	}
+	// On met à jour le nombre d'éléments.
+	if (pos >= tab->eltsCount) {
+		tab->eltsCount = pos;
+	}
 	// On ajoute l'élément à la bonne place.
 	// Les zéros sont mis automatiquement dans la fonction incrementArraySize
 	tab->elt[pos - 1] = element;
+	
 	return pos;
 }
 
@@ -61,7 +66,7 @@ int displayElements(TABLEAU* tab, int startPos, int endPos) {
 		startPos = endPos;
 		endPos = tmp;
 	}
-	if (tab->elt == NULL || startPos < 1 || endPos > tab->size) {
+	if (tab->elt == NULL || startPos < 1 || endPos > tab->eltsCount) {
 		return -1;
 	}
 	for (int i = startPos; i <= endPos; i++) {
@@ -78,7 +83,7 @@ int deleteElements(TABLEAU* tab, int startPos, int endPos) {
 		startPos = endPos;
 		endPos = tmp;
 	}
-	if (tab->elt == NULL || startPos < 1 || endPos > tab->size) {
+	if (tab->elt == NULL || startPos < 1 || endPos > tab->eltsCount) {
 		return -1;
 	}
 
@@ -91,6 +96,7 @@ int deleteElements(TABLEAU* tab, int startPos, int endPos) {
 			c++;
 		}
 	}
-	tab->size -= endPos - startPos + 1;
+	tab->eltsCount -= endPos - startPos + 1;
+	tab->eltsCount -= endPos - startPos + 1;
 	return tab->size;
 }
