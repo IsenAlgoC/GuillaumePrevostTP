@@ -97,6 +97,6 @@ int deleteElements(TABLEAU* tab, int startPos, int endPos) {
 		}
 	}
 	tab->eltsCount -= endPos - startPos + 1;
-	tab->eltsCount -= endPos - startPos + 1;
+	tab->size -= endPos - startPos + 1;
 	return tab->size;
 }
