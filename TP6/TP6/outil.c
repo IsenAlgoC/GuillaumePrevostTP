@@ -135,7 +135,7 @@ void affichage_enreg(Enregistrement enr)
   /**********************************************************************/
 void affichage_enreg_frmt(Enregistrement enr)
 {
-	printf("\n| %s, \t\t|%s \t\t|%s\t|", enr.nom, enr.prenom, enr.tel);
+	printf("\n| %-30s |%-30s |%-30s ", enr.nom, enr.prenom, enr.tel);
 } /* fin affichage_enreg */
 
 
@@ -181,9 +181,12 @@ bool est_sup(Enregistrement enr1, Enregistrement enr2)
 		b = enr2.prenom[i];
 		// Mise en majuscules
 		if (a >= 97) { a -= 32; }
-		if (b >= 97) { a -= 32; }
+		if (b >= 97) { b -= 32; }
 		if (a < b) {
 			return(true);
+		}
+		else if (a > b) {
+			return false;
 		}
 	}
 	return(false);
@@ -230,7 +233,6 @@ void trier(Repertoire *rep)
 
 int rechercher_nom(Repertoire *rep, char nom[], int ind)
 {
-	printf("\nrechercher_nom non testee");
 	
 	int i = ind;		    /* position (indice) de début de recherche dans tableau/liste rep */
 	int ind_fin;			/* position (indice) de fin de tableau/liste rep */
@@ -243,13 +245,13 @@ int rechercher_nom(Repertoire *rep, char nom[], int ind)
 
 #ifdef IMPL_TAB
 	ind_fin = rep->nb_elts - 1;
-	* tmp_nom = * nom;
+	strcpy_s(tmp_nom, _countof(tmp_nom), nom);
 	for (int j = 0; j < (int)strlen(tmp_nom); j++) {	// Conversion en majuscules
 		if (tmp_nom[j] >= 97) { tmp_nom[j] -= 32; }
 	}
 
 	while(i <= ind_fin && trouve == false){
-		*tmp_nom2 = *rep->tab[i].nom;
+		strcpy_s(tmp_nom2, _countof(tmp_nom2), rep->tab[i].nom);
 		for (int j = 0; j < (int)strlen(tmp_nom2); j++) {	// Conversion en majuscules
 			if (tmp_nom2[j] >= 97) { tmp_nom2[j] -= 32; }
 		}
@@ -259,12 +261,14 @@ int rechercher_nom(Repertoire *rep, char nom[], int ind)
 			while (tmp_nom[j] == tmp_nom2[j] && j < (int)strlen(tmp_nom)) {
 				j++;
 			}
-			if (j == (int)strlen(tmp_nom) - 1) {
+			if (j == (int)strlen(tmp_nom)) {
 				trouve = true;
 			}
 		}
+		i++;
 	}
-	
+	i--;
+
 #else
 #ifdef IMPL_LIST
 							// ajouter code ici pour Liste
