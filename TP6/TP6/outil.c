@@ -23,7 +23,7 @@ extern bool modif;
 int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 {
 #ifdef IMPL_TAB
-	printf("ajouter_un_contact_dans_rep non testee");
+	printf("\najouter_un_contact_dans_rep non testee");
 	// compléter code ici pour tableau
 	int idx;
 
@@ -32,6 +32,7 @@ int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 		rep->tab[rep->nb_elts] = enr;
 		rep->nb_elts += 1;
 		rep->est_trie = false;
+		modif = true;
 	}
 	else {
 		return(ERROR);
@@ -77,7 +78,7 @@ int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 void supprimer_un_contact_dans_rep(Repertoire *rep, int indice) {
 
 	// compléter code ici pour tableau
-	printf("supprimer_un_contact_dans_rep non testee");
+	printf("\nsupprimer_un_contact_dans_rep non testee");
 	if (rep->nb_elts >= 1)		/* s'il y a au moins un element ds le tableau */
 	{						/* et que l'indice pointe a l'interieur */
 		if (indice <= rep->nb_elts) {
@@ -123,8 +124,7 @@ void supprimer_un_contact_dans_rep(Repertoire *rep, int indice) {
   /**********************************************************************/
 void affichage_enreg(Enregistrement enr)
 {
-	printf("affichage_enreg non testee");
-	printf("%s, %s                 %s", enr.nom, enr.prenom, enr.tel);
+	printf("%s, \t%s \t\t%s", enr.nom, enr.prenom, enr.tel);
 
 
 } /* fin affichage_enreg */
@@ -135,8 +135,7 @@ void affichage_enreg(Enregistrement enr)
   /**********************************************************************/
 void affichage_enreg_frmt(Enregistrement enr)
 {
-	printf("affichage_enreg_frmt non testee");
-	printf("| %s, \t\t|%s \t\t|%s |", enr.nom, enr.prenom, enr.tel);
+	printf("\n| %s, \t\t|%s \t\t|%s\t|", enr.nom, enr.prenom, enr.tel);
 } /* fin affichage_enreg */
 
 
@@ -146,7 +145,6 @@ void affichage_enreg_frmt(Enregistrement enr)
   /**********************************************************************/
 bool est_sup(Enregistrement enr1, Enregistrement enr2)
 {
-	printf("est_sup non testee");
 	// Comparaison des noms
 	char a = 0;
 	char b = 0;
@@ -161,9 +159,13 @@ bool est_sup(Enregistrement enr1, Enregistrement enr2)
 		b = enr2.nom[i];
 		// Mise en majuscules
 		if (a >= 97) { a -= 32; }
-		if (b >= 97) { a -= 32; }
+		if (b >= 97) { b -= 32; }
+		
 		if (a < b) {
 			return(true);
+		}
+		else if (a>b) {
+			return(false);
 		}
 	}
 	
@@ -194,8 +196,6 @@ bool est_sup(Enregistrement enr1, Enregistrement enr2)
 
 void trier(Repertoire *rep)
 {
-	printf("trier non testee");
-
 #ifdef IMPL_TAB
 	// Tri à bulles
 	Enregistrement tmp;
@@ -230,6 +230,7 @@ void trier(Repertoire *rep)
 
 int rechercher_nom(Repertoire *rep, char nom[], int ind)
 {
+	printf("\nrechercher_nom non testee");
 	
 	int i = ind;		    /* position (indice) de début de recherche dans tableau/liste rep */
 	int ind_fin;			/* position (indice) de fin de tableau/liste rep */
@@ -279,15 +280,13 @@ int rechercher_nom(Repertoire *rep, char nom[], int ind)
   /*********************************************************************/
 void compact(char *s)
 {
-	char* s2 = *s;
 	int j = 0;
-	for (int i = 0; i < (int)strlen(s); i++) {
+	for (int i = 0; i <= (int)strlen(s); i++) {
 		if((s[i] >= 48 && s[i] <= 57) || s[i] == '\0') {
-			s2[j] = s[i];
+			s[j] = s[i];
 			j++;
 		}
 	}
-	*s = *s2;
 	return;
 }
 
@@ -299,8 +298,23 @@ void compact(char *s)
 int sauvegarder(Repertoire *rep, char nom_fichier[])
 {
 	FILE *fic_rep;					/* le fichier */
+
 #ifdef IMPL_TAB
-	// ajouter code ici pour tableau
+	errno_t err = fopen_s(&fic_rep, nom_fichier, "w");
+	if (err == 0) {
+		for (int i = 0; i < rep->nb_elts; i++) {
+			fputs("\n", fic_rep);
+			fputs(rep->tab[i].nom, fic_rep);
+			fputs(";", fic_rep);
+			fputs(rep->tab[i].prenom, fic_rep);
+			fputs(";", fic_rep);
+			fputs(rep->tab[i].tel, fic_rep);
+		}
+		fclose(fic_rep);
+	}
+	else {
+		return ERROR;
+	}
 	
 #else
 #ifdef IMPL_LIST
