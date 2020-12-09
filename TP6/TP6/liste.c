@@ -51,7 +51,9 @@ SingleLinkedListElem *GetElementAt(LinkedList *Liste, int i) {
 
 int InsertElementAt(LinkedList *Liste, int i, Enregistrement pers) {
 	SingleLinkedListElem *CurrentElement, *NewElement;
-	if (Liste == NULL) return(0);
+	if (Liste == NULL) {
+		return(0);
+	}
 	// recherche de l'élément qui se trouve déjà en position i
 	CurrentElement = GetElementAt(Liste, i);
 	// s'il y en a un
@@ -79,13 +81,12 @@ int InsertElementAt(LinkedList *Liste, int i, Enregistrement pers) {
 		if (Liste->size == 0) { // insertion en tête de l'unique élément
 			NewElement = NewLinkedListElement(pers);
 			if (NewElement != NULL) {
-			//
-			//
-			//   insertion code ici
-			//
-			//
-			//
-		}
+				Liste->head = NewElement;
+				Liste->tail = NewElement;
+				NewElement->next = NULL;
+				Liste->size = 1;
+				return 1;
+			}
 			else {
 				return(0);
 			}
@@ -93,18 +94,16 @@ int InsertElementAt(LinkedList *Liste, int i, Enregistrement pers) {
 		if (Liste->size <= i) { // insertion en queue
 			NewElement = NewLinkedListElement(pers);
 			if (NewElement != NULL) {
-			//
-			//
-			//   insertion code ici
-			//
-			//
-			//
+				Liste->tail->next = NewElement;
+				Liste->tail = NewElement;
+				NewElement->next = NULL;
+				Liste->size += 1;
+				return 1;
 			}
 			else {
 				return(0);
 			}
 		}
-
 	}
 	return(0);
 }
@@ -118,12 +117,40 @@ int DeleteLinkedListElem(LinkedList * list, SingleLinkedListElem * item) {
 	if ((list->head == list->tail) && (list->size != 1)) return(0); // anomalie
 	if ((list->size == 0) || (item == NULL)) return(0); // pas d'élément dans la liste ou item invalide
 
-	//
-	//
-	// compléter code ici
-	//
-	//
-
+	SingleLinkedListElem* tmp = list->head;
+	SingleLinkedListElem* previous = NULL;
+	if (item == list->head && item == list->tail) {
+		list->head = NULL;
+		list->tail = NULL;
+		list->size = 0;
+		free(item);
+		return(1);
+	}
+	if (item == list->head) {
+		list->head = item->next;
+		list->size -= 1;
+		free(item);
+		return 1;
+	}
+	while (tmp != NULL && tmp != item) {
+		previous = tmp;
+		tmp = tmp->next;
+	}
+	// S'il est en queue on supprime la queue
+	if (previous != NULL && tmp == item && tmp->next == NULL) {
+		list->tail = previous;
+		previous->next = NULL;
+		list->size--;
+		free(item);
+		return 1;
+	}
+	// S'il est au milieu on supprime l'element
+	if (previous != NULL && tmp == item && tmp->next != NULL) {
+		previous->next = item->next;
+		list->size--;
+		free(item);
+		return 1;
+	}
 
 	return(0);  // pas trouvé
 }

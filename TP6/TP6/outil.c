@@ -43,30 +43,36 @@ int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 #ifdef IMPL_LIST
 
 	bool inserted = false;
+	// SI LE REPERTOIRE EST VIDE
 	if (rep->nb_elts == 0) {
-		if (InsertElementAt(rep->liste, rep->liste->size, enr) != 0) {
+		if (inserted = InsertElementAt(rep->liste, 0, enr) != 0) {
 			rep->nb_elts += 1;
 			modif = true;
 			rep->est_trie = true;
-			return(OK);
 		}
-
+		return inserted;
 	}
-	else {
-			//
-			// compléter code ici pour Liste
-			//
-			//
-			//
+	// SI LE REPERTOIRE N'EST PAS VIDE : On ajoute à la bonne place
+	else {		
+		int i = 0;
 
+		while (i < rep->nb_elts && est_sup(GetElementAt(rep->liste, i)->pers, enr)) {
+			i++;
+		}
+		// On ajoute l'élément à la place i
+		if (inserted = InsertElementAt(rep->liste, i, enr) != 0) {
+			rep->nb_elts += 1;
+			modif = true;
+			rep->est_trie = true;
+		}
+		return inserted;
 	}
 
+	return(ERROR);
 
 #endif
 	
 #endif
-
-
 	return(OK);
 
 } /* fin ajout */
@@ -75,6 +81,7 @@ int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
   /*   paramètre       et place modif = true                            */
   /**********************************************************************/
 #ifdef IMPL_TAB
+
 void supprimer_un_contact_dans_rep(Repertoire *rep, int indice) {
 
 	// compléter code ici pour tableau
@@ -271,8 +278,30 @@ int rechercher_nom(Repertoire *rep, char nom[], int ind)
 
 #else
 #ifdef IMPL_LIST
-							// ajouter code ici pour Liste
-	
+	ind_fin = rep->nb_elts - 1;
+	strcpy_s(tmp_nom, _countof(tmp_nom), nom);
+	for (int j = 0; j < (int)strlen(tmp_nom); j++) {	// Conversion en majuscules
+		if (tmp_nom[j] >= 97) { tmp_nom[j] -= 32; }
+	}
+
+	while (i <= ind_fin && trouve == false) {
+		strcpy_s(tmp_nom2, _countof(tmp_nom2), GetElementAt(rep->liste,i)->pers.nom);
+		for (int j = 0; j < (int)strlen(tmp_nom2); j++) {	// Conversion en majuscules
+			if (tmp_nom2[j] >= 97) { tmp_nom2[j] -= 32; }
+		}
+
+		if (strlen(tmp_nom) == strlen(tmp_nom2)) {
+			int j = 0;
+			while (tmp_nom[j] == tmp_nom2[j] && j < (int)strlen(tmp_nom)) {
+				j++;
+			}
+			if (j == (int)strlen(tmp_nom)) {
+				trouve = true;
+			}
+			}
+		i++;
+		}
+	i--;
 #endif
 #endif
 
@@ -322,7 +351,21 @@ int sauvegarder(Repertoire *rep, char nom_fichier[])
 	
 #else
 #ifdef IMPL_LIST
-	// ajouter code ici pour Liste
+	errno_t err = fopen_s(&fic_rep, nom_fichier, "w");
+	if (err == 0) {
+		for (int i = 0; i < rep->nb_elts; i++) {
+			fputs(GetElementAt(rep->liste, i)->pers.nom, fic_rep);
+			fputs(";", fic_rep);
+			fputs(GetElementAt(rep->liste, i)->pers.prenom, fic_rep);
+			fputs(";", fic_rep);
+			fputs(GetElementAt(rep->liste, i)->pers.tel, fic_rep);
+			fputs("\n", fic_rep);
+		}
+		fclose(fic_rep);
+	}
+	else {
+		return ERROR;
+	}
 #endif
 #endif
 
@@ -378,7 +421,19 @@ int charger(Repertoire *rep, char nom_fichier[])
 				}
 #else
 #ifdef IMPL_LIST
-														// ajouter code implemention liste
+				Enregistrement nouveau;
+				if (lire_champ_suivant(buffer, &idx, nouveau.nom, MAX_NOM, SEPARATEUR) == OK)
+				{
+					idx++;							/* on saute le separateur */
+					if (lire_champ_suivant(buffer, &idx, nouveau.prenom, MAX_NOM, SEPARATEUR) == OK)
+					{
+						idx++;
+						if (lire_champ_suivant(buffer, &idx, nouveau.tel, MAX_TEL, SEPARATEUR) == OK)
+							num_rec++;		/* element à priori correct, on le comptabilise */
+					}
+				}
+				InsertElementAt(rep->liste, num_rec, nouveau);
+
 #endif
 #endif
 
